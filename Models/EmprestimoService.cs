@@ -34,7 +34,46 @@ namespace Biblioteca.Models
         {
             using(BibliotecaContext bc = new BibliotecaContext())
             {
-                return bc.Emprestimos.Include(e => e.Livro).ToList();
+                IQueryable<Emprestimo> query;
+
+                if (filtro != null)
+                {
+                    switch (filtro.TipoFiltro)
+                    {
+                        case "Usuario":
+                            query = bc.Emprestimos.Where(e => e.NomeUsuario.Contains(filtro.Filtro));
+                        break;
+
+                        case "Livro":
+                            List<Livro> LivrosFiltrados = bc.Livros.Where(l => l.Titulo.Contains(filtro.Filtro)).ToList();
+
+                            List<int>LivrosIds = new List<int>();
+                            for (int i = 0; i < LivrosFiltrados.Count; i++)
+                            {
+                                LivrosIds.Add(LivrosFiltrados[i].Id);
+                            }
+
+                            query = bc.Emprestimos.Where(e => LivrosIds.Contains(e.LivroId));
+                            var debug = query.ToList();
+                        break;
+
+                        default: 
+                            query = bc.Emprestimos;
+                        break;
+                    }
+                }
+                else
+                {
+                    query = bc.Emprestimos;
+                }
+                
+                List<Emprestimo> ListaConsulta = query.OrderBy(e => e.DataDevolucao).ToList();
+                for (int i = 0; i < ListaConsulta.Count; i++)
+                {
+                    ListaConsulta[i].Livro = bc.Livros.Find(ListaConsulta[i].LivroId);
+                }
+
+                return ListaConsulta; //////REVER ORDEM DE LISTAGEM
             }
         }
 
