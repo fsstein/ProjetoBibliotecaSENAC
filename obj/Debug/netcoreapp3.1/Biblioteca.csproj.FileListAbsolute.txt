@@ -51,3 +51,7 @@ C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenç
 C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenção de aplicações Web\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.dll
 C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenção de aplicações Web\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.pdb
 C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenção de aplicações Web\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.genruntimeconfig.cache
+C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenção de aplicações Web\Biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\EditarUsuario.cshtml.g.cs
+C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenção de aplicações Web\Biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\InserirUsuario.cshtml.g.cs
+C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenção de aplicações Web\Biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Listagem.cshtml.g.cs
+C:\Users\ferna\Google Drive\SENAC\Mod 2 - UC07 - Documentar e realizar manutenção de aplicações Web\Biblioteca\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\ExcluirUsuario.cshtml.g.cs
