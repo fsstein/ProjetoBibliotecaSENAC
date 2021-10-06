@@ -67,13 +67,13 @@ namespace Biblioteca.Models
                     query = bc.Emprestimos;
                 }
                 
-                List<Emprestimo> ListaConsulta = query.OrderBy(e => e.DataDevolucao).ToList();
+                List<Emprestimo> ListaConsulta = query.OrderByDescending(e => e.DataDevolucao).ToList();
                 for (int i = 0; i < ListaConsulta.Count; i++)
                 {
                     ListaConsulta[i].Livro = bc.Livros.Find(ListaConsulta[i].LivroId);
                 }
 
-                return ListaConsulta; //////REVER ORDEM DE LISTAGEM
+                return ListaConsulta; 
             }
         }
 
