@@ -11,7 +11,7 @@ namespace Biblioteca.Controllers
     {
         public IActionResult Cadastro()
         {
-            Autenticacao.CheckLogin(this);
+            Autenticacao.CheckLogin(this); //controle de acesso e redireciona para login
 
             LivroService livroService = new LivroService();
             EmprestimoService emprestimoService = new EmprestimoService();
@@ -26,7 +26,7 @@ namespace Biblioteca.Controllers
         public IActionResult Cadastro(CadEmprestimoViewModel viewModel)
         {
             Autenticacao.CheckLogin(this);
-            
+
             EmprestimoService emprestimoService = new EmprestimoService();
             
             if(viewModel.Emprestimo.Id == 0)
