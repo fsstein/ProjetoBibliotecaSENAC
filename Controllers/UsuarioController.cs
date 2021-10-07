@@ -1,6 +1,7 @@
 using Biblioteca.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace Biblioteca.Controllers
         public IActionResult InserirUsuario()
         {
             Autenticacao.CheckLogin(this);
-            return View();
+            Autenticacao.verificaSeUsuarioAdminExiste(this);
+
+            return View(new UsuarioService().Listar());
         }
 
         [HttpPost]
@@ -27,6 +30,8 @@ namespace Biblioteca.Controllers
         
         public IActionResult Listagem()
         {              
+            Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioAdminExiste(this);
             UsuarioService user = new UsuarioService();
             List<Usuario> Listagem = user.Listar();
             return View(Listagem);
@@ -35,6 +40,7 @@ namespace Biblioteca.Controllers
         public IActionResult EditarUsuario(int Id)
         {
             Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioAdminExiste(this);
             UsuarioService user = new UsuarioService();
             Usuario u = user.Listar(Id);
             return View(u);
@@ -45,15 +51,28 @@ namespace Biblioteca.Controllers
         {
             UsuarioService user = new UsuarioService();
             user.Atualizar(u);
-            ViewBag.Mensagem="Usuário atualizado com sucesso!";
             return RedirectToAction("Listagem");
         }
 
         public IActionResult ExcluirUsuario(int Id)
         {
+            Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioAdminExiste(this);
             UsuarioService user = new UsuarioService();
             user.Excluir(Id);
             return RedirectToAction("Listagem"); 
+        }
+
+        public IActionResult NeedAdmin()
+        {
+            Autenticacao.CheckLogin(this);
+            return View();
+        }
+
+        public IActionResult Sair()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
