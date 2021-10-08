@@ -20,15 +20,20 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="/Livro/Cadastro" id="menuLivros">Livros</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#">Livros</a>
+                            <div class="dropdown-menu" aria-labelledby="menuLivros">
+                                <a class="dropdown-item" href="/Livro/Cadastro" id="menuLivros">Cadastrar
+                                    Livros</a>
+                                <a class="dropdown-item" href="/Livro/Listagem" id="menuLivros">Listar Livros</a>
+                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown"
                                 href="#">Emprestimo</a>
                             <div class="dropdown-menu" aria-labelledby="menuLivros">
-                                <a class="dropdown-item" href="/Emprestimo/Listagem">Listagem</a>
-                                <a class="dropdown-item" href="/Emprestimo/Cadastro">Cadastro</a>
+                                <a class="dropdown-item" href="/Emprestimo/Listagem">Listar Empréstimos</a>
+                                <a class="dropdown-item" href="/Emprestimo/Cadastro">Cadastrar Empréstimos</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -39,7 +44,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="/Usuarios/Sair" id="menuLivros">Sair</a>
+                            <a class="nav-link text-light" href="/Home/Login" id="menuLivros">Sair</a>
                         </li>
                     </ul>
                 </div>

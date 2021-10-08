@@ -15,28 +15,33 @@ namespace Biblioteca.Controllers
             Autenticacao.CheckLogin(this);
             Autenticacao.verificaSeUsuarioAdminExiste(this);
 
-            return View(new UsuarioService().Listar());
+            //var listUser = new UsuarioService().Listar();
+            //return View(listUser);
+            return View();
         }
 
         [HttpPost]
         public IActionResult InserirUsuario(Usuario u)
         {
-            UsuarioService usuarioService = new UsuarioService();
-            usuarioService.Inserir(u);       
+            Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioAdminExiste(this);
 
+            u.Senha = Criptografo.TextoCriptografado(u.Senha);
+            UsuarioService usuarioService = new UsuarioService();
+            usuarioService.Inserir(u);
             return RedirectToAction("Listagem");
         }
 
-        
+
         public IActionResult Listagem()
-        {              
+        {
             Autenticacao.CheckLogin(this);
             Autenticacao.verificaSeUsuarioAdminExiste(this);
             UsuarioService user = new UsuarioService();
             List<Usuario> Listagem = user.Listar();
             return View(Listagem);
         }
-      
+
         public IActionResult EditarUsuario(int Id)
         {
             Autenticacao.CheckLogin(this);
@@ -47,7 +52,7 @@ namespace Biblioteca.Controllers
         }
 
         [HttpPost]
-         public IActionResult EditarUsuario(Usuario u)
+        public IActionResult EditarUsuario(Usuario u)
         {
             UsuarioService user = new UsuarioService();
             user.Atualizar(u);
@@ -60,7 +65,7 @@ namespace Biblioteca.Controllers
             Autenticacao.verificaSeUsuarioAdminExiste(this);
             UsuarioService user = new UsuarioService();
             user.Excluir(Id);
-            return RedirectToAction("Listagem"); 
+            return RedirectToAction("Listagem");
         }
 
         public IActionResult NeedAdmin()
@@ -71,8 +76,9 @@ namespace Biblioteca.Controllers
 
         public IActionResult Sair()
         {
+            Autenticacao.CheckLogin(this);
             HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("/Home/Login");
         }
     }
 }
