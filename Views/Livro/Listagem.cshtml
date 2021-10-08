@@ -19,16 +19,24 @@
             <div class="form-group mb-2 mx-sm-3">
                 <input type="text" placeholder="Filtro" name="Filtro" class="form-control" />
             </div>
-
+            <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
             <div>
                 <select name="itensPorPagina" id="itensPorPagina">
                     <option value="10">10 Livros</option>
-                    <option value="10">30 Livros</option>
-                    <option value="10">50 Livros</option>
+                    <option value="15">15 Livros</option>
+                    <option value="30">30 Livros</option>
+                    <option value="50">50 Livros</option>
+                    <option value=@Model.Count>Todos</option>
                 </select>
             </div>
-
-            <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+            <br>
+            <div id="SeletorPaginas">
+                <span>Página: </span>
+                @for (int i = 1; i <= NumTotalDePag; i++)
+                {
+                    <span><a href="/Livro/Listagem?PaginaAtual=@i">@i </a></span>
+                }
+            </div>
         </form>
     </div>
 </div>
@@ -48,8 +56,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (int i = (PaginaAtual - 1) * NumLivrosPorPag; i < (NumLivrosPorPag * PaginaAtual < Model.Count ?
-                   NumLivrosPorPag * PaginaAtual : Model.Count); i++)
+                    @for (int i = (PaginaAtual - 1) * NumLivrosPorPag;
+                   i < (NumLivrosPorPag * PaginaAtual < Model.Count ? NumLivrosPorPag * PaginaAtual : Model.Count); i++)
                     {
                         <tr>
                             <td>@Model[i].Id</td>
